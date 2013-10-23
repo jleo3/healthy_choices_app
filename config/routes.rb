@@ -1,7 +1,9 @@
 HealthyChoicesApp::Application.routes.draw do
   devise_for :users
+
+  resources :maps, :only => [:index]
   root 'welcome#index'
-  get '/maps' => 'maps#index' 
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

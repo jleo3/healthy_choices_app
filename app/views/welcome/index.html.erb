@@ -18,13 +18,14 @@
     
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-      <li>Signed in as <%= current_user.email %></li>
+      <li><a>Signed in as <%= current_user.email %></a></li>
       <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
       
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
