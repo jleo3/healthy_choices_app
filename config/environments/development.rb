@@ -15,6 +15,27 @@ HealthyChoicesApp::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  
+  #ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :tls => true,
+    :domain => "gmail.com",
+    :authentication => :plain,
+    :user_name => "jonathan@jonathantrope.com",
+    :password => "<MyPassword>",
+  }
+  
+  
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -26,4 +47,6 @@ HealthyChoicesApp::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+ 
+ 
 end
