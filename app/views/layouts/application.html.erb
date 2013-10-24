@@ -3,12 +3,18 @@
 <head>
   <title>HealthyChoicesApp</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "gmaps4rails.css" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "gmaps4rails.base.js" %>
+  <%= javascript_include_tag "gmaps4rails.bing.js" %>
+  <%= javascript_include_tag "gmaps4rails.googlemaps.js" %>
+  <%= javascript_include_tag "gmaps4rails.mapquest.js" %>
+  <%= javascript_include_tag "gmaps4rails.openlayers.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
-
+  <%= yield %>
+  <%= yield :scripts %>
 </body>
 </html>
