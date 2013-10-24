@@ -30,7 +30,11 @@
 <div class="jumbotron">
   <div class="container">
     <%= link_to "Add new Restaurant", new_restaurant_path %>
+    <% if @restaurants.count != 0 %>
+    <%= gmaps4rails(@json) %>
+    <% else %>
     <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 12, :auto_adjust => true}) %>
+    <% end %>
   </div>
 </div>
 
