@@ -2,8 +2,9 @@ HealthyChoicesApp::Application.routes.draw do
   get "restaurant/index"
   devise_for :users
 
-  resources :restaurants, :only => [:index]
+  resources :restaurants, :only => [:index, :new, :create, :show]
   root 'welcome#index'
+  
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

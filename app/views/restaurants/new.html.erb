@@ -29,8 +29,14 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= link_to "Add new Restaurant", new_restaurant_path %>
-    <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 12, :auto_adjust => true}) %>
+    <%= form_for @restaurant do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+    <%= f.submit %>
+    <% end %>
   </div>
 </div>
-
