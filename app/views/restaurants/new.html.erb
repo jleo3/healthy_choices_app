@@ -26,16 +26,12 @@
   </div><!-- /.navbar-collapse -->
 </nav>
 
-<!-- Home page header -->
+n<!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
     <%= form_for @restaurant do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude %>
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude %>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
     <%= f.submit %>
     <% end %>
   </div>
