@@ -18,8 +18,10 @@ class Restaurant < ActiveRecord::Base
     access_token = OAuth::AccessToken.new(consumer, token, token_secret)
 
     uri_encoded_name = URI.escape("#{self.name}")
-    path = "/v2/search?term=#{uri_encoded_name}&location=new%20york&limit=1"
+    uri_encoded_city = URI.escape("#{self.city}")
+    path = "/v2/search?term=#{uri_encoded_name}&location=#{uri_encoded_city}&limit=1"
     
-    self.address = access_token.get(path).body
+    restaurant_address = access_token.get(path).body
+    self.address = restaurant_address
   end
 end
