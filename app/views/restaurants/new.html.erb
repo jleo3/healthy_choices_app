@@ -29,9 +29,21 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
+   <% if @restaurant.errors.any? %>
+  <h2>There were errors saving your restaurant</h2>
+  <ul>
+    <% @restaurant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
     <%= form_for @restaurant do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
     <%= f.submit %>
     <% end %>
   </div>
