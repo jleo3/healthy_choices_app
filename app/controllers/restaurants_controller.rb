@@ -11,6 +11,8 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @restaurant_array = Restaurant.get_google_places(@restaurant)
+    
   end
 
   def create

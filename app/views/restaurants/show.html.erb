@@ -32,6 +32,13 @@
     <h2>Address: <%= @restaurant.address %></h2>
     <h2>Longitude: <%= @restaurant.longitude %></h2>
     <h2>Latitude: <%= @restaurant.latitude %></h2>
+    <div class="test_container">
+      <ul>
+	<% @restaurant_array.each do |restaurant| %>
+        <li><%= restaurant.name %>, <%= restaurant.lat %>, <%= restaurant.lng %></li>
+	<% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
