@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'devise'
 gem 'gmaps4rails'
+gem 'oauth'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
