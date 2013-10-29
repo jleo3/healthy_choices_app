@@ -19,10 +19,11 @@ class Restaurant < ActiveRecord::Base
 
     uri_encoded_name = URI.escape("#{self.name}")
     uri_encoded_city = URI.escape("#{self.city}")
-    path = "/v2/search?term=#{uri_encoded_name}&location=#{uri_encoded_city}&limit=1"
+    path = "/v2/search?term=#{uri_encoded_name}&location=#{uri_encoded_city}&limit=1&category_filter=restaurants"
     
-    #Below we are saving the feed result to address for demonstrative purposes only. Eventually, we want to parse longitude and latitude into their fields.
-    restaurant_latitude = access_token.get(path).body.scan(/"latitude":\s(\d+.\d+)/).join
-    self.address = restaurant_latitude
+
+    res = JSON::parse(access_token.get(path).body)
+    self.address = res
+
   end
 end
