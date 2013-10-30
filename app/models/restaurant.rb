@@ -32,16 +32,23 @@ class Restaurant < ActiveRecord::Base
     def store_restaurants_data(rest_obj)
       results_array = Array.new
       
+      
       rest_obj.each do |key, val|
-               
+        my_objects = []
+        my_object = Place.new #Create a struct. 
+
         if key == "businesses"
           rest_obj["businesses"].each do |business|
             biz_hash = Hash.new
+
             biz_hash["name"] = business["name"]
-            results_array << biz_hash
+            my_object.biz_name = business["name"]
+            my_objects << my_object
           end
         elsif key == "region"
-          
+          res_obj["region"].each do |region|
+            
+          end
         end
         
       end #end of loop for rest_obj hash
