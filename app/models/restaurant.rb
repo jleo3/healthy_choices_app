@@ -25,9 +25,10 @@ class Restaurant < ActiveRecord::Base
     res = JSON::parse(access_token.get(path).body)
 
     self.name = store_restaurants_data(res).first.biz_name
-    self.address = store_restaurants_data(res).first.address
-    self.yelp_rating = store_restaurant_data(res).first.rating
 
+    #Exclude neigberhood value in return array
+    self.address = "#{store_restaurants_data(res).first.address.first} #{store_restaurants_data(res).first.address[-1]}" 
+    self.yelp_rating = store_restaurants_data(res).first.rating
   end
 
   #stores salient restaurant data from json feed into hashes within an array within a dream
