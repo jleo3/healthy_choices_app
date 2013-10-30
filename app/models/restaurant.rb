@@ -24,34 +24,25 @@ class Restaurant < ActiveRecord::Base
     #parse API call into JSON object
     res = JSON::parse(access_token.get(path).body)
 
-    self.address = store_restaurants_data(res).join(" ")
+    self.name = store_restaurants_data(res).first.biz_name
+    self.address = store_restaurants_data(res).first.address
+    self.yelp_rating = store_restaurant_data(res).first.rating
 
   end
 
   #stores salient restaurant data from json feed into hashes within an array within a dream
-    def store_restaurants_data(rest_obj)
-      results_array = Array.new
-      
-      
-      rest_obj.each do |key, val|
-        my_objects = []
-        my_object = Place.new #Create a struct. 
+  def store_restaurants_data(rest_obj)
+    my_places = []
+    my_place = Struct.new("Place", :biz_name, :rating, :address) #Defining a new struct (class) called my_place      
 
-        if key == "businesses"
-          rest_obj["businesses"].each do |business|
-            biz_hash = Hash.new
+    rest_obj["businesses"].each do |business|
+      new_place = my_place.new
+      new_place.biz_name = business["name"]
+      new_place.rating = business["rating"]
+      new_place.address = business["location"]["display_address"]
 
-            biz_hash["name"] = business["name"]
-            my_object.biz_name = business["name"]
-            my_objects << my_object
-          end
-        elsif key == "region"
-          res_obj["region"].each do |region|
-            
-          end
-        end
-        
-      end #end of loop for rest_obj hash
-      results_array
+      my_places << new_place
     end
+    my_places
   end
+end
