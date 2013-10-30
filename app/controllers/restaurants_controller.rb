@@ -2,7 +2,6 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
     @json = @restaurants.to_gmaps4rails
-   
   end
 
   def new
@@ -25,7 +24,7 @@ class RestaurantsController < ApplicationController
   private
 
   def safe_restaurant_params
-    params.require('restaurant').permit(:name, :longitude, :latitude, :city)
+    params.require('restaurant').permit(:name, :city)
   end
   
 end
