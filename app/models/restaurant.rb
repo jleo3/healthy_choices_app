@@ -3,9 +3,9 @@ require 'net/http'
 class Restaurant < ActiveRecord::Base
 
   validates :name, :city, presence: true
-  acts_as_gmappable :process_geocoding => false
+  acts_as_gmappable 
   before_save :yelpify
-  
+    
   def yelpify
     consumer_key = 'Jdy8fp6RC-3uO9eeh1K6IA'
     consumer_secret = 'jfO1O9GH0eMamjUhZZa9byq82ho'
