@@ -26,5 +26,4 @@ class RestaurantsController < ApplicationController
   def safe_restaurant_params
     params.require('restaurant').permit(:name, :city)
   end
-  
 end

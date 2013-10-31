@@ -4,11 +4,10 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, :city, presence: true
   before_save :yelpify
-  acts_as_gmappable validation: false
+  acts_as_gmappable validation: false, process_geocoding: false
+  geocoded_by :address
+  before_save :geocode
   
-  def gmaps4rails_address
-    "#{self.address}, #{self.city}, #{self.state}, #{self.zip}"
-  end
 
   def yelpify
     consumer_key = 'Jdy8fp6RC-3uO9eeh1K6IA'
@@ -44,7 +43,7 @@ class Restaurant < ActiveRecord::Base
       new_place = my_place.new
       new_place.biz_name = business["name"]
       new_place.rating = business["rating"]
-      new_place.address = business["location"]["address"].join(" ")
+      new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}"
       new_place.state = business["location"]["state_code"]
       new_place.zip = business["location"]["postal_code"]
       

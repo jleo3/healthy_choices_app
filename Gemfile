@@ -7,6 +7,7 @@ gem 'gmaps4rails'
 gem 'oauth'
 gem 'rest-client'
 gem 'json'
+gem 'geocoder'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
