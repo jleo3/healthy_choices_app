@@ -8,7 +8,6 @@ class Restaurant < ActiveRecord::Base
   geocoded_by :address
   before_save :geocode
   
-
   def yelpify
     consumer_key = 'Jdy8fp6RC-3uO9eeh1K6IA'
     consumer_secret = 'jfO1O9GH0eMamjUhZZa9byq82ho'

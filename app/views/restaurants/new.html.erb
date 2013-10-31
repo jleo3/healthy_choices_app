@@ -38,13 +38,15 @@
   </ul>
 <% end %>
 
-
-    <%= form_for @restaurant do |f| %>
+    <%= form_for @new_search do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :city %>
     <%= f.text_field :city %>
     <%= f.submit %>
     <% end %>
+
+    <%= @yelp_results %>
+
   </div>
 </div>
