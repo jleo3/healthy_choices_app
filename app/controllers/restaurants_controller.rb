@@ -5,11 +5,9 @@ class RestaurantsController < ApplicationController
     @json = @restaurants.to_gmaps4rails
   end
 
-  def search
-    
-  end
-  
   def new
+    @name = params[:name]
+    
     @restaurant = Restaurant.new
   end
 
