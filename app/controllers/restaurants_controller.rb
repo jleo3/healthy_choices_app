@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+    
   def index
     @restaurants = Restaurant.all
     @json = @restaurants.to_gmaps4rails

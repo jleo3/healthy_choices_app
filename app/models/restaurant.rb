@@ -7,8 +7,7 @@ class Restaurant < ActiveRecord::Base
   acts_as_gmappable validation: false, process_geocoding: false
   geocoded_by :address
   before_save :geocode
-  
-
+    
   def yelpify
     consumer_key = 'Jdy8fp6RC-3uO9eeh1K6IA'
     consumer_secret = 'jfO1O9GH0eMamjUhZZa9byq82ho'
@@ -31,11 +30,10 @@ class Restaurant < ActiveRecord::Base
     self.address = store_restaurants_data(res).first.address
     self.yelp_rating = store_restaurants_data(res).first.rating
   end
-
-  #stores salient restaurant data from json feed into hashes within an array within a dream
+  
   def store_restaurants_data(rest_obj)
     my_places = []
-    my_place = Struct.new("Place", :biz_name, :rating, :address, :state, :zip) #Defining a new struct (class) called my_place      
+    my_place = Struct.new("Place", :biz_name, :rating, :address) #Defining a new struct (class) to hold fields from Yelp JSON      
     
     rest_obj["businesses"].each do |business|
       new_place = my_place.new
@@ -44,6 +42,7 @@ class Restaurant < ActiveRecord::Base
       new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}"
             
       my_places << new_place
+
     end
     my_places
   end
