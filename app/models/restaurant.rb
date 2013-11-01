@@ -29,8 +29,6 @@ class Restaurant < ActiveRecord::Base
 
     self.name = store_restaurants_data(res).first.biz_name
     self.address = store_restaurants_data(res).first.address
-    self.state = store_restaurants_data(res).first.state
-    self.zip = store_restaurants_data(res).first.zip
     self.yelp_rating = store_restaurants_data(res).first.rating
   end
 
@@ -44,9 +42,7 @@ class Restaurant < ActiveRecord::Base
       new_place.biz_name = business["name"]
       new_place.rating = business["rating"]
       new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}"
-      new_place.state = business["location"]["state_code"]
-      new_place.zip = business["location"]["postal_code"]
-      
+            
       my_places << new_place
     end
     my_places
