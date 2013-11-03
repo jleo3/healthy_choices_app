@@ -29,8 +29,11 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
+    <% if @restaurant_results.empty? %>
+    <h1>No results found</h1>
+    <%= link_to "Back to search", restaurants_search_path %>
+    <% else %>
     <h1>Search Results</h1>
-    
     <% @restaurant_results.each do |restaurant| %>
     
         <ul class="thumbnails">
@@ -44,15 +47,15 @@
 	  <%= form_for @restaurant do |f| %>
 	  <%= f.hidden_field :name, value: restaurant.biz_name %>
 	  <%= f.hidden_field :address, value: restaurant.address %>
-	  <%= f.hidden_field :city, value: "foobar" %>
 	  <%= f.hidden_field :yelp_rating, value: restaurant.rating %>
 	  <div class="btn-group">
-	    <%= f.submit %>
+	    <%= f.submit "Bookmark" %>
 	  </div>
 	  <% end %>
 	</div>
       </li>
     </ul>
+    <% end %>
     <% end %>
   </div>
 </div>
