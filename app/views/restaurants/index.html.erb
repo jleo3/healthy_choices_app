@@ -29,7 +29,7 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= link_to "Add new Restaurant", new_restaurant_path %>
+    <%= link_to "Add new Restaurant", restaurants_search_path %>
     <% if @restaurants.count != 0 %>
     <%= gmaps4rails(@json) %>
     <% else %>

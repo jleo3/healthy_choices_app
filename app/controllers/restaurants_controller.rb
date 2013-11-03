@@ -18,6 +18,8 @@ class RestaurantsController < ApplicationController
   
   def new
     
+    @restaurant_results = get_yelp_results(params[:name], params[:city])
+
   end
 
   def show
