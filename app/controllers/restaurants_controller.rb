@@ -17,9 +17,7 @@ class RestaurantsController < ApplicationController
   end
   
   def new
-    
     @restaurant_results = get_yelp_results(params[:name], params[:city])
-
   end
 
   def show
@@ -59,24 +57,22 @@ class RestaurantsController < ApplicationController
 
     #parse API call into JSON object
     res = JSON::parse(access_token.get(path).body)
-    
     store_restaurants_data(res)
   end
   
-    def store_restaurants_data(rest_obj)
+  def store_restaurants_data(rest_obj)
     my_places = []
-    my_place = Struct.new("Place", :biz_name, :rating, :address) #Defining a new struct (class) to hold fields from Yelp JSON      
+    my_place = Struct.new("Place", :biz_name, :rating, :address, :image_url) #Defining a new struct (class) to hold fields from Yelp JSON      
     
     rest_obj["businesses"].each do |business|
-        new_place = my_place.new
+      new_place = my_place.new
       new_place.biz_name = business["name"]
       new_place.rating = business["rating"]
       new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}"
-            
-      my_places << new_place
+      new_place.image_url = business["image_url"]
 
+      my_places << new_place
     end
     my_places
   end
-  
 end

@@ -29,7 +29,15 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= @restaurant_results %>
+    <h1>Search Results</h1>
+    <% @restaurant_results.each do |restaurant| %>
+    <h2><%= restaurant.biz_name %></h2>
+    <ul>
+      <li>Address: <%= restaurant.address %></li>
+      <li>Rating: <%= restaurant.rating %></li>
+      <li>Image: <%= image_tag restaurant.image_url %></li>
+    </ul>
+    <% end %>
   </div>
 </div>
 
