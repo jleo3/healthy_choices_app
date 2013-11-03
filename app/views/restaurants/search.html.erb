@@ -29,12 +29,17 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= form_tag("/restaurants/search", method: "get") do %>
-    <%= label_tag(:name, "Restaurant Name:") %>
+
+    <%= form_tag("/restaurants/new", method: "get") do %>
+    <%= label_tag(:name, "Restaurant name:") %>
     <%= text_field_tag(:name) %>
     <%= label_tag(:city, "City:") %>
     <%= text_field_tag(:city) %>
     <%= submit_tag("Search") %>
     <% end %>
+
+    <%= @search_name.nil? %>
+    <%= @search_city.nil? %>
+
   </div>
 </div>

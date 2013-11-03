@@ -29,24 +29,7 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-   <% if @restaurant.errors.any? %>
-  <h2>There were errors saving your restaurant</h2>
-  <ul>
-    <% @restaurant.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
 
-
-    <%= form_tag("/restaurants/new", method: "get") do %>
-    <%= label_tag(:name, "Restaurant name:") %>
-    <%= text_field_tag(:name) %>
-    <%= label_tag(:city, "City:") %>
-    <%= text_field_tag(:city) %>
-    <%= submit_tag("Search") %>
-    <% end %>
-
-    <%= @name %>
   </div>
 </div>
+
