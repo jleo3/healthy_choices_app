@@ -1,5 +1,3 @@
-require 'net/http'
-
 class Restaurant < ActiveRecord::Base
 
   validates :name, :city, presence: true

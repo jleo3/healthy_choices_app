@@ -18,6 +18,7 @@ class RestaurantsController < ApplicationController
   
   def new
     @restaurant_results = get_yelp_results(params[:name], params[:city])
+    @restaurant = Restaurant.new
   end
 
   def show
@@ -36,7 +37,7 @@ class RestaurantsController < ApplicationController
   private
 
   def safe_restaurant_params
-    params.require('restaurant').permit(:name, :city)
+    params.require(:restaurant).permit(:name, :city, :address, :yelp_rating)
   end
 
   def get_yelp_results(name, city)

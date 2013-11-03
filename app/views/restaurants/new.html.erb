@@ -30,12 +30,28 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Search Results</h1>
+    
     <% @restaurant_results.each do |restaurant| %>
-    <h2><%= restaurant.biz_name %></h2>
-    <ul>
-      <li>Address: <%= restaurant.address %></li>
-      <li>Rating: <%= restaurant.rating %></li>
-      <li>Image: <%= image_tag restaurant.image_url %></li>
+    
+        <ul class="thumbnails">
+      <li class="span4">
+	<div class="thumbnail">
+	  <%= image_tag restaurant.image_url %>
+	  <h3><%= restaurant.biz_name %></h3>
+	  <p><%= restaurant.address %></p>
+	  <p>Yelp rating: <%= restaurant.rating %></p>
+	  
+	  <%= form_for @restaurant do |f| %>
+	  <%= f.hidden_field :name, value: restaurant.biz_name %>
+	  <%= f.hidden_field :address, value: restaurant.address %>
+	  <%= f.hidden_field :city, value: "foobar" %>
+	  <%= f.hidden_field :yelp_rating, value: restaurant.rating %>
+	  <div class="btn-group">
+	    <%= f.submit %>
+	  </div>
+	  <% end %>
+	</div>
+      </li>
     </ul>
     <% end %>
   </div>
