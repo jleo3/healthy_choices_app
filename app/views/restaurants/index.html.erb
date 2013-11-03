@@ -29,7 +29,29 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= link_to "Add new Restaurant", restaurants_search_path %>
+    <div class="btn-group index-btn">
+      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn btn-info btn-large" %>
+    </div>
+
+    <table class="table">
+      <tr class="header">
+	<td><h4>#</h4></td>
+	<td><h4>Restaurant</h4></td>
+	<td><h4>Address</h4></td>
+	<td><h4>Yelp Rating</h4></td>
+      </tr>
+      <% count = 0 %>
+      <% @restaurants.each do |restaurant| %>
+      <% count += 1 %>
+      <tr>
+	<td><h4><%= count %></h4></td>
+	<td><h4><%= restaurant.name %></h4></td>
+	<td><h4><%= restaurant.address %></h4></td>
+	<td><h4><%= restaurant.yelp_rating %></h4></td>
+      </tr>
+      <% end %>
+    </table>
+
     <% if @restaurants.count != 0 %>
     <%= gmaps4rails(@json) %>
     <% else %>

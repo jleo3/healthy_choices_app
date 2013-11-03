@@ -37,7 +37,7 @@ class RestaurantsController < ApplicationController
   private
 
   def safe_restaurant_params
-    params.require(:restaurant).permit(:name, :address, :yelp_rating)
+    params.require(:restaurant).permit(:name, :address, :yelp_rating, :image_url)
   end
 
   def get_yelp_results(name, city)

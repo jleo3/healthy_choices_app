@@ -42,12 +42,13 @@
 	  <%= image_tag restaurant.image_url %>
 	  <h3><%= restaurant.biz_name %></h3>
 	  <p><%= restaurant.address %></p>
-	  <p>Yelp rating: <%= restaurant.rating %></p>
+	  <p>Yelp rating: <%= "#{restaurant.rating} / 5" %></p>
 	  
 	  <%= form_for @restaurant do |f| %>
 	  <%= f.hidden_field :name, value: restaurant.biz_name %>
 	  <%= f.hidden_field :address, value: restaurant.address %>
 	  <%= f.hidden_field :yelp_rating, value: restaurant.rating %>
+	  <%= f.hidden_field :image_url, value: restaurant.image_url %>
 	  <div class="btn-group">
 	    <%= f.submit "Bookmark" %>
 	  </div>

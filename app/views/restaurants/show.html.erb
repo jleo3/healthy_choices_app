@@ -29,9 +29,30 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <h2>Name: <%= @restaurant.name %></h2>
-    <h2>Address: <%= @restaurant.address %></h2>
-    <h2>Yelp Rating: <%= @restaurant.yelp_rating %></h2>
+    
+    <div class="container">
+      <div class="row">
+	<div class="col-md-8">
+          <div class="well well-sm">
+            <div class="media">
+              <a class="thumbnail pull-left">
+                <img class="media-object" src=<%= @restaurant.image_url %>>
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= @restaurant.name%></h4>
+                <p><span class="label label-info">Yelp Rating:</span> <span class="label label-success"><%= "#{@restaurant.yelp_rating} / 5" %></span></p>
+                <p>
+                  <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                  <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                  <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 
