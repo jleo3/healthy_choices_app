@@ -57,7 +57,7 @@
     <% if @restaurants.count != 0 %>
     <%= gmaps4rails(@json) %>
     <% else %>
-    <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 12, :auto_adjust => true}) %>
+    <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 15, :auto_adjust => true}) %>
     <% end %>
   </div>
 </div>
