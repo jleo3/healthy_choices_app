@@ -39,6 +39,7 @@
 	<td><h4>Restaurant</h4></td>
 	<td><h4>Address</h4></td>
 	<td><h4>Yelp Rating</h4></td>
+	<td></td>
       </tr>
       <% count = 0 %>
       <% @restaurants.each do |restaurant| %>
@@ -48,6 +49,7 @@
 	<td><h4><%= restaurant.name %></h4></td>
 	<td><h4><%= restaurant.address %></h4></td>
 	<td><h4><%= restaurant.yelp_rating %></h4></td>
+	<td><h4><%= link_to "View meals", restaurant_path(restaurant) %></h4></td>
       </tr>
       <% end %>
     </table>
