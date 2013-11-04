@@ -43,7 +43,7 @@
                 <p><span class="label label-info">Yelp Rating:</span> <span class="label label-success"><%= "#{@restaurant.yelp_rating} / 5" %></span></p>
 		<h4><%= @restaurant.address %></h4>
 		<div class="btn-group">
-		  <%= link_to "Add new meal", new_meal_path, :class =>"btn btn-danger btn-large" %>
+		  <%= link_to "Add new meal", {:controller => "meals", :action => "new", :id => @restaurant.id }, :class =>"btn btn-danger btn-large" %>
 		</div>
               </div>
             </div>

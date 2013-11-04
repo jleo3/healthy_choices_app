@@ -30,6 +30,15 @@
 <div class="jumbotron">
   <div class="container">
 
+    <%= form_for @meal do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %></br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.hidden_field :restaurant_id, value: @restaurant_id %></br>
+    <%= f.submit %>
+    <% end %>
+
 
   </div>
 </div>

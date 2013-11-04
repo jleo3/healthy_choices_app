@@ -5,7 +5,7 @@ HealthyChoicesApp::Application.routes.draw do
   get 'restaurants/search' => 'restaurants#search'
     
   resources :restaurants, :only => [:index, :new, :create, :show, :search]
-  resources :meals, :only => [:new]
+  resources :meals, :only => [:index, :new, :create, :show]
 
   root 'welcome#index'
   
