@@ -2,13 +2,18 @@ require 'net/http'
 
 class RestaurantsController < ApplicationController
     
-  def index
+  def home
     @restaurants = Restaurant.all
     @json = @restaurants.to_gmaps4rails do |restaurant, marker|
       marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
       marker.title "#{restaurant.name}"
       marker.json({ :address => restaurant.address})
     end
+  end
+
+  def index
+    @restaurants = Restaurant.all
+    
   end
 
   def search
