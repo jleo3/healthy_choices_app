@@ -58,12 +58,20 @@
 	<td><h3>Name</h3></td>
 	<td><h3>Description</h3></td>
 	<td><h3>Estimated Calories</h3></td>
+	<td></td>
       </tr>
       <% @restaurant.meals.each do |meal| %>
       <tr>
 	<td><%= meal.name %></td>
 	<td><%= meal.description %></td>
-	<td><%= meal.calories %></td>
+	<td>
+	  <% if meal.calories.nil? %>
+	  None entered
+	  <% else %>
+	  <%= meal.calories %>
+	  <% end %>
+	</td>
+	<td><%= link_to "Edit Meal", :controller => :meals, :action => :edit, :id => meal.id %></td>
       </tr>
       <% end %>
     </table>
