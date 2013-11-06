@@ -13,7 +13,7 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(safe_meal_params)
     if @meal.save
-      redirect_to @meal
+      redirect_to restaurant_path(@meal.restaurant_id)
     else
       render :new
     end

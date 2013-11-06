@@ -18,8 +18,9 @@ class RestaurantsController < ApplicationController
     unless @search_name.nil? && @search_city.nil?
       redirect_to :action => "new", :name => @search_name, :city => @search_city
     end
+
   end
-  
+
   def new
     @restaurant_results = get_yelp_results(params[:name], params[:city])
     @restaurant = Restaurant.new
