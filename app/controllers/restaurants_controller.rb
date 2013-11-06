@@ -45,10 +45,10 @@ class RestaurantsController < ApplicationController
   end
 
   def get_yelp_results(name, city)
-    consumer_key = 'Jdy8fp6RC-3uO9eeh1K6IA'
-    consumer_secret = 'jfO1O9GH0eMamjUhZZa9byq82ho'
-    token = '6_s2AkZmUyYEuwGsJBvkzZlkdiigc7sP'
-    token_secret = 'ahhR0jRAKYVyaHBXGamMQCAY3yw'
+    consumer_key = ENV["CONSUMER_KEY"]
+    consumer_secret = ENV["CONSUMER_SECRET"]
+    token = ENV["TOKEN"]
+    token_secret = ENV["TOKEN_SECRET"]
     
     api_host = 'api.yelp.com'
     

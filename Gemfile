@@ -10,7 +10,7 @@ gem 'json'
 gem 'geocoder'
 gem 'pg'
 
-#gem 'sqlite3', :group => [:development, :test]
+gem 'dotenv-rails', :group => [:development, :test]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
