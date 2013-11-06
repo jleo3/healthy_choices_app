@@ -2,7 +2,8 @@ class MealsController < ApplicationController
 
   def new
     @meal = Meal.new
-    @restaurant_id = params[:id]
+    @restaurant_id = params[:rest_id]
+    @user_id = params[:user_id]
   end
 
   def show
@@ -21,7 +22,7 @@ class MealsController < ApplicationController
   private
   
   def safe_meal_params
-    params.require(:meal).permit(:name, :description, :restaurant_id)
+    params.require(:meal).permit(:name, :description, :restaurant_id, :user_id)
   end
 
 end
