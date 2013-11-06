@@ -22,7 +22,7 @@ class MealsController < ApplicationController
   private
   
   def safe_meal_params
-    params.require(:meal).permit(:name, :description, :restaurant_id, :user_id)
+    params.require(:meal).permit(:name, :description, :restaurant_id, :user_id, :calories)
   end
 
 end

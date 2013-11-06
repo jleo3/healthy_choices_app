@@ -30,16 +30,26 @@
 <div class="jumbotron">
   <div class="container">
 
+    <% if @meal.errors.any? %>
+    <h2>There were errors saving your meal</h2>
+    <ul>
+      <% @meal.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <%= form_for @meal do |f| %>
-    <%= f.label :name %>
+    <%= f.label :name, "Meal Name:" %>
     <%= f.text_field :name %></br>
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description %></br>
+    <%= f.label :calories, "Estimated Calories:" %>
+    <%= f.text_field :calories %></br>
     <%= f.hidden_field :restaurant_id, value: @restaurant_id %>
     <%= f.hidden_field :user_id, value: @user_id %>
     <%= f.submit %>
     <% end %>
-
 
   </div>
 </div>
