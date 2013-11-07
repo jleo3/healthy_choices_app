@@ -13,14 +13,14 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li><%= link_to "Home", home_path %></li>
+      <li class="active"><%= link_to "My Restaurants", restaurants_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
       <li><a>Signed in as <%= current_user.email %></a></li>
       <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-      
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
@@ -29,32 +29,22 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <div class="btn-group index-btn">
-      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn btn-info btn-large" %>
-    </div>
-
+    <h2>My Restaurants</h2>
     <table class="table table-hover">
-      <tr class="header">
-	<td><h4>#</h4></td>
-	<td><h4>Restaurant</h4></td>
-	<td><h4>Address</h4></td>
-	<td><h4>Yelp Rating</h4></td>
-	<td></td>
-      </tr>
-      <% count = 0 %>
-      <% @restaurants.each do |restaurant| %>
-      <% count += 1 %>
       <tr>
-	<td><h4><%= count %></h4></td>
-	<td><h4><%= restaurant.name %></h4></td>
-	<td><h4><%= restaurant.address %></h4></td>
-	<td><h4><%= restaurant.yelp_rating %></h4></td>
-	<td><h4><%= link_to "View meals", restaurant_path(restaurant) %></h4></td>
+	<td><h3>Restaurant</h3></td>
+	<td><h3>Address</h3></td>
+	<td><h3>Yelp Rating</h3></td>
+      </tr>
+      <% @restaurants.each do |restaurant| %>
+      <tr>
+	<td><%= restaurant.name %></td>
+	<td><%= restaurant.address %></td>
+	<td><%= restaurant.yelp_rating %></td>
       </tr>
       <% end %>
     </table>
-
-    <% if @restaurants.count != 0 %>
+        <% if @restaurants.count != 0 %>
     <%= gmaps4rails(@json) %>
     <% else %>
     <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 15, :auto_adjust => true}) %>
