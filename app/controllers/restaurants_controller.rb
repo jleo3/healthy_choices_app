@@ -4,6 +4,17 @@ class RestaurantsController < ApplicationController
     
   def home
     @restaurants = Restaurant.all
+    @search_zip = params[:zipcode]
+
+    @near_restaurants = Array.new
+    unless @search_zip.nil?
+      @restaurants.each do |restaurant|
+        if is_in_range?(restaurant, @search_zip)
+          @near_restaurants << restaurant
+        end
+      end
+    end
+
   end
 
   def index
@@ -44,6 +55,15 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
+  #returns true if location is within 5 miles of zip based on lat/long using geocoder gem
+  def is_in_range?(location, zip)
+    if Geocoder::Calculations.distance_between(Geocoder.coordinates("#{zip}"), [location.latitude, location.longitude])
+      return true
+    else
+      return false
+    end
+  end
 
   def safe_restaurant_params
     params.require(:restaurant).permit(:name, :address, :yelp_rating, :image_url)

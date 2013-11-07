@@ -32,12 +32,16 @@
     <h2>My Restaurants</h2>
     <table class="table table-hover">
       <tr>
+	<td><h3>#</h3></td>
 	<td><h3>Restaurant</h3></td>
 	<td><h3>Address</h3></td>
 	<td><h3>Yelp Rating</h3></td>
       </tr>
+      <% count = 0 %>
       <% @restaurants.each do |restaurant| %>
+      <% count += 1 %>
       <tr>
+	<td><%= count %></td>
 	<td><%= restaurant.name %></td>
 	<td><%= restaurant.address %></td>
 	<td><%= restaurant.yelp_rating %></td>
