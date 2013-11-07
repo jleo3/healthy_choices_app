@@ -13,7 +13,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><%= link_to "Home", root_path %></li>
       <li><%= link_to "My Restaurants", restaurants_path %></li>
     </ul>
     
@@ -34,6 +34,7 @@
       <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn btn-info btn-large" %>
     </div>
     <h2>Find bookmarked restaurants near:</h2>
+    
     <%= form_tag home_path, method: "get" do %>
     <%= label_tag "Zipcode:" %>
     <%= text_field_tag "zipcode" %>
@@ -43,7 +44,7 @@
     <% unless @search_zip.nil? %>
     <%= @near_restaurants %>
     <% end %>
-
+    
   </div>
 </div>
 

@@ -56,9 +56,9 @@ class RestaurantsController < ApplicationController
 
   private
 
-  #returns true if location is within 5 miles of zip based on lat/long using geocoder gem
+  #returns true if location is within 2 miles of zip based on lat/long using geocoder gem
   def is_in_range?(location, zip)
-    if Geocoder::Calculations.distance_between(Geocoder.coordinates("#{zip}"), [location.latitude, location.longitude])
+    if Geocoder::Calculations.distance_between(Geocoder.coordinates("#{zip}"), [location.latitude, location.longitude]) <= 2.0
       return true
     else
       return false
