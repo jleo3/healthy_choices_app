@@ -57,13 +57,17 @@
     <h1>Saved Meals</h1>
     <table class="table table-hover">
       <tr>
-	<td><h3>Name</h3></td>
+	<td><h3>#</h3></td>
+	<td><h3>Meal</h3></td>
 	<td><h3>Description</h3></td>
 	<td><h3>Estimated Calories</h3></td>
 	<td></td>
       </tr>
+      <% count = 0 %>
       <% @restaurant.meals.each do |meal| %>
+      <% count += 1 %>
       <tr>
+	<td><%= count %></td>
 	<td><%= meal.name %></td>
 	<td><%= meal.description %></td>
 	<td>
