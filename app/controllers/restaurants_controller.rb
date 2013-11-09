@@ -1,6 +1,7 @@
 require 'net/http'
 
 class RestaurantsController < ApplicationController
+  before_filter :authenticate_user!
     
   def home
     @restaurants = Restaurant.all
@@ -14,7 +15,6 @@ class RestaurantsController < ApplicationController
         end
       end
     end
-
   end
 
   def index
@@ -33,7 +33,6 @@ class RestaurantsController < ApplicationController
     unless @search_name.nil? && @search_city.nil?
       redirect_to :action => "new", :name => @search_name, :city => @search_city
     end
-
   end
 
   def new
@@ -98,7 +97,7 @@ class RestaurantsController < ApplicationController
       new_place = my_place.new
       new_place.biz_name = business["name"]
       new_place.rating = business["rating"]
-      new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}"
+      new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}" #uggggly
       new_place.image_url = business["image_url"]
 
       my_places << new_place
