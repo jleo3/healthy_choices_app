@@ -58,13 +58,31 @@
     <% end %>
 
     <% unless @search_zip.nil? %>
-    <% if @near_restaurants.empty? %>
-    <h2>No results found</h2>
-    <% else %>
-    <%= @near_restaurants %>
+        <% if @near_restaurants.empty? %>
+            <h2>No results found</h2>
+        <% else %>
+            <table class="table table-hover">
+               <tr>
+		 <td><h3>#</h3></td>
+		 <td><h3>Restaurant</h3></td>
+		 <td><h3>Address</h3></td>
+		 <td><h3>Yelp Rating</h3></td>
+		 <td></td>
+	       </tr>
+	       <% count = 0 %>
+               <% @near_restaurants.each do |restaurant| %>
+	          <% count += 1 %>
+                  <tr>
+		    <td><%= count %></td>
+		    <td><%= restaurant.name %></td>
+		    <td><%= restaurant.address %></td>
+		    <td><%= restaurant.yelp_rating %></td>
+		  </tr>
+               <% end %>
+	    </table>
+	    <%= gmaps4rails(@json) %>
+	<% end %>
     <% end %>
-    <% end %>
-    
   </div>
 </div>
 

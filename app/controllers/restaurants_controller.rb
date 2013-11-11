@@ -12,6 +12,11 @@ class RestaurantsController < ApplicationController
       @restaurants.each do |restaurant|
         if is_in_range?(restaurant, @search_zip)
           @near_restaurants << restaurant
+          @json = @near_restaurants.to_gmaps4rails do |restaurant, marker|
+      marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
+      marker.title "#{restaurant.name}"
+      marker.json({ :address => restaurant.address})
+          end
         end
       end
     end
