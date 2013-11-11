@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'devise'
-gem 'gmaps4rails'
+gem 'gmaps4rails', "~> 1.5.6"
 gem 'oauth'
 gem 'rest-client'
 gem 'json'
@@ -51,3 +51,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor', group: :production
+
+
+
+
