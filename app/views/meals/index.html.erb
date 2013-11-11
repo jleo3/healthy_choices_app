@@ -14,14 +14,15 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", home_path %></li>
-      <li class="active"><%= link_to "My Restaurants", restaurants_path %></li>
-      <li><%= link_to "My Meals", meals_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
+      <li class="active"><%= link_to "My Meals", meals_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
       <li><a>Signed in as <%= current_user.email %></a></li>
       <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+      
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
@@ -30,33 +31,25 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <h2>My Restaurants</h2>
     <table class="table table-hover">
       <tr>
 	<td><h3>#</h3></td>
-	<td><h3>Restaurant</h3></td>
-	<td><h3>Address</h3></td>
-	<td><h3>Yelp Rating</h3></td>
+	<td><h3>Meal</h3></td>
+	<td><h3>Description</h3></td>
+	<td><h3>Estimated Calories</h3></td>
 	<td></td>
+	<% count = 0 %>
+	<% @meals.each do |meal| %>
+	<% count += 1 %>
+	<tr>
+	  <td><%= count %></td>
+	  <td><%= meal.name %></td>
+	  <td><%= meal.description %></td>
+	  <td><%= meal.calories %></td>
+	  <td><%= link_to "Edit", edit_meal_path(meal) %></td>
+	</tr>
+             <% end %>
       </tr>
-      <% count = 0 %>
-      <% @restaurants.each do |restaurant| %>
-          <% count += 1 %>
-      <tr>
-	<td><%= count %></td>
-	<td><%= restaurant.name %></td>
-	<td><%= restaurant.address %></td>
-	<td><%= restaurant.yelp_rating %></td>
-	<td><%= link_to "View", restaurant_path(restaurant) %></td>
-      </tr>
-      <% end %>
     </table>
-
-    <% if @restaurants.count != 0 %>
-    <%= gmaps4rails(@json) %>
-    <% else %>
-    <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 15, :auto_adjust => true}) %>
-    <% end %>
   </div>
 </div>
-

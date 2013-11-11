@@ -1,0 +1,88 @@
+<head>
+  <script>
+    $(document).ready(function() {
+        $("#form").submit(function() {
+          var regex = /^\d{5}$/
+          var input = $("#form #zipcode").val()
+          
+          if (input.search(regex) == -1 ) {
+            alert("Please enter a valid zipcode");
+            window.location.reload();
+            return false;
+          }
+       });
+    });
+  </script>
+</head>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">HealthyEats</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><%= link_to "Home", root_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
+      <li><%= link_to "My Meals", meals_path %></li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+      <li><a>Signed in as <%= current_user.email %></a></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+      <% end %>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<!-- Home page header -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="btn-group index-btn">
+      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn btn-info btn-large" %>
+    </div>
+    <h2>Find bookmarked restaurants near:</h2>
+    
+    <%= form_tag home_path, method: "get", :id => "form" do %>
+    <%= label_tag "Zipcode:" %>
+    <%= text_field_tag "zipcode" %>
+    <%= submit_tag "Submit" %>
+    <% end %>
+
+    <% unless @search_zip.nil? %>
+        <% if @near_restaurants.empty? %>
+            <h2>No results found</h2>
+        <% else %>
+            <table class="table table-hover">
+               <tr>
+		 <td><h3>#</h3></td>
+		 <td><h3>Restaurant</h3></td>
+		 <td><h3>Address</h3></td>
+		 <td><h3>Yelp Rating</h3></td>
+		 <td></td>
+	       </tr>
+	       <% count = 0 %>
+               <% @near_restaurants.each do |restaurant| %>
+	          <% count += 1 %>
+                  <tr>
+		    <td><%= count %></td>
+		    <td><%= restaurant.name %></td>
+		    <td><%= restaurant.address %></td>
+		    <td><%= restaurant.yelp_rating %></td>
+		  </tr>
+               <% end %>
+	    </table>
+	    <%= gmaps4rails(@json) %>
+	<% end %>
+    <% end %>
+  </div>
+</div>
+

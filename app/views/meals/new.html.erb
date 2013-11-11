@@ -13,8 +13,8 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><%= link_to "Home", home_path %></li>
-      <li class="active"><%= link_to "My Restaurants", restaurants_path %></li>
+      <li class="active"><%= link_to "Home", home_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
       <li><%= link_to "My Meals", meals_path %></li>
     </ul>
     
@@ -22,6 +22,7 @@
       <% if user_signed_in? %>
       <li><a>Signed in as <%= current_user.email %></a></li>
       <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+      
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
@@ -30,33 +31,27 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <h2>My Restaurants</h2>
-    <table class="table table-hover">
-      <tr>
-	<td><h3>#</h3></td>
-	<td><h3>Restaurant</h3></td>
-	<td><h3>Address</h3></td>
-	<td><h3>Yelp Rating</h3></td>
-	<td></td>
-      </tr>
-      <% count = 0 %>
-      <% @restaurants.each do |restaurant| %>
-          <% count += 1 %>
-      <tr>
-	<td><%= count %></td>
-	<td><%= restaurant.name %></td>
-	<td><%= restaurant.address %></td>
-	<td><%= restaurant.yelp_rating %></td>
-	<td><%= link_to "View", restaurant_path(restaurant) %></td>
-      </tr>
-      <% end %>
-    </table>
 
-    <% if @restaurants.count != 0 %>
-    <%= gmaps4rails(@json) %>
-    <% else %>
-    <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 15, :auto_adjust => true}) %>
+    <% if @meal.errors.any? %>
+    <h2>There were errors saving your meal</h2>
+    <ul>
+      <% @meal.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
     <% end %>
+
+    <%= form_for @meal do |f| %>
+    <%= f.label :name, "Meal Name:" %>
+    <%= f.text_field :name %></br>
+    <%= f.label :description %>
+    <%= f.text_area :description %></br>
+    <%= f.label :calories, "Estimated Calories:" %>
+    <%= f.text_field :calories %></br>
+    <%= f.hidden_field :restaurant_id, value: @restaurant_id %>
+    <%= f.hidden_field :user_id, value: @user_id %>
+    <%= f.submit %>
+    <% end %>
+
   </div>
 </div>
-

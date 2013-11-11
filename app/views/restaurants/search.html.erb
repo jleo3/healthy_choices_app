@@ -1,3 +1,16 @@
+<head>
+  <script>
+    $(document).ready(function(){
+       $("#form").submit(function(){
+               if ( $("#form #name").val().length == 0 || $("#form #city").val().length == 0 ) {
+               alert("Input cannot be empty");
+               window.location.reload();
+               return false;
+             }
+       });
+    });
+  </script>
+</head>
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
@@ -13,7 +26,9 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li><%= link_to "Home", home_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
+      <li><%= link_to "My Meals", meals_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
@@ -29,8 +44,14 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <h1>HealthyEats</h1>
-    <p>Because life is to short to diet without tasty food</p>
-    <%= link_to '<i class="btn btn-primary btn-lg">Get Started</i>'.html_safe, restaurants_path %>
+
+    <%= form_tag("/restaurants/new", method: "get", :id => "form") do %>
+    <%= label_tag(:name, "Restaurant name:") %>
+    <%= text_field_tag(:name) %>
+    <%= label_tag(:city, "City:") %>
+    <%= text_field_tag(:city) %>
+    <%= submit_tag("Search", :id => "submit") %>
+    <% end %>
+
   </div>
 </div>

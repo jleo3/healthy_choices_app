@@ -13,7 +13,9 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><%= link_to "Home", home_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
+      <li><%= link_to "My Meals", meals_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
@@ -29,16 +31,55 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <h2>Address: <%= @restaurant.address %></h2>
-    <h2>Longitude: <%= @restaurant.longitude %></h2>
-    <h2>Latitude: <%= @restaurant.latitude %></h2>
-    <div class="test_container">
-      <ul>
-	<% @restaurant_array.each do |restaurant| %>
-        <li><%= restaurant.name %>, <%= restaurant.lat %>, <%= restaurant.lng %></li>
-	<% end %>
-      </ul>
-    </div>
+    <div class="container">
+      <div class="row">
+	<div class="col-md-8">
+          <div class="well well-sm">
+            <div class="media">
+              <a class="thumbnail pull-left">
+                <img class="media-object" src=<%= @restaurant.image_url %>>
+              </a>
+              <div class="media-body">
+                <h2 class="media-heading"><%= @restaurant.name%></h2>
+                <p><span class="label label-info">Yelp Rating:</span> <span class="label label-success"><%= "#{@restaurant.yelp_rating} / 5" %></span></p>
+		<h4><%= @restaurant.address %></h4>
+		<div class="btn-group">
+		  <%= link_to "Add new meal", {:controller => "meals", :action => "new", :rest_id => @restaurant.id, :user_id => current_user.id }, :class =>"btn btn-danger btn-large" %>
+		</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End of restaurant profile head -->
+    
+    <h1>Saved Meals</h1>
+    <table class="table table-hover">
+      <tr>
+	<td><h3>#</h3></td>
+	<td><h3>Meal</h3></td>
+	<td><h3>Description</h3></td>
+	<td><h3>Estimated Calories</h3></td>
+	<td></td>
+      </tr>
+      <% count = 0 %>
+      <% @restaurant.meals.each do |meal| %>
+      <% count += 1 %>
+      <tr>
+	<td><%= count %></td>
+	<td><%= meal.name %></td>
+	<td><%= meal.description %></td>
+	<td>
+	  <% if meal.calories.nil? %>
+	  None entered
+	  <% else %>
+	  <%= meal.calories %>
+	  <% end %>
+	</td>
+	<td><%= link_to "Edit Meal", :controller => :meals, :action => :edit, :id => meal.id %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
 

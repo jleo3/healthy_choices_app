@@ -1,11 +1,10 @@
 class Restaurant < ActiveRecord::Base
+  has_many :meals
+  belongs_to :restaurant
+  belongs_to :user
+
+  validates :name, :address, presence: true
+  acts_as_gmappable validation: false, process_geocoding: false
   geocoded_by :address
-  after_validation :geocode
-  acts_as_gmappable :process_geocoding => false
-
-
-  def self.get_google_places(restaurant)
-    @client = GooglePlaces::Client.new('AIzaSyCKQ1sBI9xkbkB4KxF8tuoIoHAhmEzhCAg')
-    @restaurant_array = @client.spots(restaurant.latitude, restaurant.longitude, :types => ['food'], :radius => 20000, :name => 'Carnegie Deli')
-  end
+  before_save :geocode
 end

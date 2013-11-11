@@ -4,11 +4,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'devise'
 gem 'gmaps4rails'
-gem 'google_places'
+gem 'oauth'
+gem 'rest-client'
+gem 'json'
 gem 'geocoder'
+gem 'pg'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'dotenv-rails', :group => [:development, :test]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -47,3 +49,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'rails_12factor', group: :production

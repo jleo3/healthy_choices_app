@@ -13,7 +13,9 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><%= link_to "Home", home_path %></li>
+      <li><%= link_to "My Restaurants", restaurants_path %></li>
+      <li><%= link_to "My Meals", meals_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
@@ -29,10 +31,36 @@
 n<!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= form_for @restaurant do |f| %>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-    <%= f.submit %>
+    <% if @restaurant_results.empty? %>
+    <h1>No results found</h1>
+    <%= link_to "Back to search", restaurants_search_path %>
+    <% else %>
+    <h1>Search Results</h1>
+    <% @restaurant_results.each do |restaurant| %>
+    
+        <ul class="thumbnails">
+      <li class="span4">
+	<div class="thumbnail">
+	  <%= image_tag restaurant.image_url %>
+	  <h3><%= restaurant.biz_name %></h3>
+	  <p><%= restaurant.address %></p>
+	  <p>Yelp rating: <%= "#{restaurant.rating} / 5" %></p>
+	  
+	  <%= form_for @restaurant do |f| %>
+	  <%= f.hidden_field :name, value: restaurant.biz_name %>
+	  <%= f.hidden_field :address, value: restaurant.address %>
+	  <%= f.hidden_field :yelp_rating, value: restaurant.rating %>
+	  <%= f.hidden_field :image_url, value: restaurant.image_url %>
+	  <%= f.hidden_field :user_id, value: current_user.id %>
+	  <div class="btn-group">
+	    <%= f.submit "Bookmark" %>
+	  </div>
+	  <% end %>
+	</div>
+      </li>
+    </ul>
+    <% end %>
     <% end %>
   </div>
 </div>
+
