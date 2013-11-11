@@ -1,3 +1,19 @@
+<head>
+  <script>
+    $(document).ready(function() {
+        $("#form").submit(function() {
+          var regex = /^\d{5}$/
+          var input = $("#form #zipcode").val()
+          
+          if (input.search(regex) == -1 ) {
+            alert("Please enter a valid zipcode");
+            window.location.reload();
+            return false;
+          }
+       });
+    });
+  </script>
+</head>
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
@@ -35,7 +51,7 @@
     </div>
     <h2>Find bookmarked restaurants near:</h2>
     
-    <%= form_tag home_path, method: "get" do %>
+    <%= form_tag home_path, method: "get", :id => "form" do %>
     <%= label_tag "Zipcode:" %>
     <%= text_field_tag "zipcode" %>
     <%= submit_tag "Submit" %>
