@@ -40,7 +40,7 @@
 	<td></td>
 	<% count = 0 %>
 	<% @meals.each do |meal| %>
-	<% count += 1%>
+	<% count += 1 %>
 	<tr>
 	  <td><%= count %></td>
 	  <td><%= meal.name %></td>
@@ -48,7 +48,7 @@
 	  <td><%= meal.calories %></td>
 	  <td><%= link_to "Edit", edit_meal_path(meal) %></td>
 	</tr>
-	<% end %>
+             <% end %>
       </tr>
     </table>
   </div>

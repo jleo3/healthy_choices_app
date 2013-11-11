@@ -41,7 +41,7 @@
       </tr>
       <% count = 0 %>
       <% @restaurants.each do |restaurant| %>
-      <% count += 1 %>
+          <% count += 1 %>
       <tr>
 	<td><%= count %></td>
 	<td><%= restaurant.name %></td>
@@ -51,7 +51,8 @@
       </tr>
       <% end %>
     </table>
-        <% if @restaurants.count != 0 %>
+
+    <% if @restaurants.count != 0 %>
     <%= gmaps4rails(@json) %>
     <% else %>
     <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 15, :auto_adjust => true}) %>

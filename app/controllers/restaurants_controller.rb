@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   before_filter :authenticate_user!
     
   def home
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.find(:all, :conditions => { :user_id => current_user.id })
     @search_zip = params[:zipcode]
 
     @near_restaurants = Array.new
@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.find(:all, :conditions => { :user_id => current_user.id })
     @json = @restaurants.to_gmaps4rails do |restaurant, marker|
       marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
       marker.title "#{restaurant.name}"
@@ -70,7 +70,7 @@ class RestaurantsController < ApplicationController
   end
 
   def safe_restaurant_params
-    params.require(:restaurant).permit(:name, :address, :yelp_rating, :image_url)
+    params.require(:restaurant).permit(:name, :address, :yelp_rating, :image_url, :user_id)
   end
 
   def get_yelp_results(name, city)

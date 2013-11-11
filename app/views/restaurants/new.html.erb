@@ -51,6 +51,7 @@
 	  <%= f.hidden_field :address, value: restaurant.address %>
 	  <%= f.hidden_field :yelp_rating, value: restaurant.rating %>
 	  <%= f.hidden_field :image_url, value: restaurant.image_url %>
+	  <%= f.hidden_field :user_id, value: current_user.id %>
 	  <div class="btn-group">
 	    <%= f.submit "Bookmark" %>
 	  </div>
