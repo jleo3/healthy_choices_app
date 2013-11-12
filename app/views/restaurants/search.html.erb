@@ -1,13 +1,14 @@
 <head>
   <script>
+    <!-- Ensure that form_tag inputs are not empty-->
     $(document).ready(function(){
        $("#form").submit(function(){
-               if ( $("#form #name").val().length == 0 || $("#form #city").val().length == 0 ) {
-               alert("Input cannot be empty");
-               window.location.reload();
-               return false;
-             }
-       });
+           if ( $("#form #name").val().length == 0 || $("#form #city").val().length == 0 ) {
+           alert("Input cannot be empty");
+           window.location.reload();
+           return false;
+           }
+        });
     });
   </script>
 </head>
@@ -44,14 +45,12 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-
     <%= form_tag("/restaurants/new", method: "get", :id => "form") do %>
-    <%= label_tag(:name, "Restaurant name:") %>
-    <%= text_field_tag(:name) %>
-    <%= label_tag(:city, "City:") %>
-    <%= text_field_tag(:city) %>
-    <%= submit_tag("Search", :id => "submit") %>
+      <%= label_tag(:name, "Restaurant name:") %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:city, "City:") %>
+      <%= text_field_tag(:city) %>
+      <%= submit_tag("Search", :id => "submit") %>
     <% end %>
-
   </div>
 </div>

@@ -2,6 +2,7 @@ class MealsController < ApplicationController
 
   def index
     @meals = Meal.find(:all, :conditions => { :user_id => current_user.id })
+
   end
 
   def new

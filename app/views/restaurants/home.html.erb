@@ -1,5 +1,6 @@
 <head>
   <script>
+    <!-- Validate zip code input -->
     $(document).ready(function() {
         $("#form").submit(function() {
           var regex = /^\d{5}$/
@@ -47,16 +48,18 @@
 <div class="jumbotron">
   <div class="container">
     <div class="btn-group index-btn">
-      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn btn-info btn-large" %>
+      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn-large btn-success" %>
     </div>
-    <h2>Find bookmarked restaurants near:</h2>
-    
-    <%= form_tag home_path, method: "get", :id => "form" do %>
-    <%= label_tag "Zipcode:" %>
-    <%= text_field_tag "zipcode" %>
-    <%= submit_tag "Submit" %>
-    <% end %>
-
+    <h2 class="text-center">Find bookmarked restaurants near:</h2>
+    <div class="row-fluid">
+      <div class="span4 well">
+	<%= form_tag home_path, method: "get", :id => "form", :class => "form-search" do %>
+	<%= label_tag "Zipcode:", nil,:class => "control-label" %>
+	<%= text_field_tag "zipcode", nil, :class => "input-large search-query" %>
+	<%= submit_tag "Submit", :class => "btn-large btn-primary" %>
+	<% end %>
+      </div>
+    </div>
     <% unless @search_zip.nil? %>
         <% if @near_restaurants.empty? %>
             <h2>No results found</h2>

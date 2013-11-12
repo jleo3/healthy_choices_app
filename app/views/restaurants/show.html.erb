@@ -64,20 +64,20 @@
       </tr>
       <% count = 0 %>
       <% @restaurant.meals.each do |meal| %>
-      <% count += 1 %>
-      <tr>
-	<td><%= count %></td>
-	<td><%= meal.name %></td>
-	<td><%= meal.description %></td>
-	<td>
-	  <% if meal.calories.nil? %>
-	  None entered
-	  <% else %>
-	  <%= meal.calories %>
-	  <% end %>
-	</td>
-	<td><%= link_to "Edit Meal", :controller => :meals, :action => :edit, :id => meal.id %></td>
-      </tr>
+         <% count += 1 %>
+         <tr>
+	   <td><%= count %></td>
+	   <td><%= meal.name %></td>
+	   <td><%= meal.description %></td>
+	   <td>
+	     <% if meal.calories.nil? %>
+  	       None entered
+       	     <% else %>
+	       <%= meal.calories %>
+       	     <% end %>
+	   </td>
+	   <td><%= link_to "Edit Meal", :controller => :meals, :action => :edit, :id => meal.id %></td>
+	 </tr>
       <% end %>
     </table>
   </div>

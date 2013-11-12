@@ -13,9 +13,9 @@ class RestaurantsController < ApplicationController
         if is_in_range?(restaurant, @search_zip)
           @near_restaurants << restaurant
           @json = @near_restaurants.to_gmaps4rails do |restaurant, marker|
-      marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
-      marker.title "#{restaurant.name}"
-      marker.json({ :address => restaurant.address})
+            marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
+            marker.title "#{restaurant.name}"
+            marker.json({ :address => restaurant.address})
           end
         end
       end
@@ -73,6 +73,7 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :address, :yelp_rating, :image_url, :user_id)
   end
 
+  #Yelp API call
   def get_yelp_results(name, city)
     consumer_key = ENV["CONSUMER_KEY"]
     consumer_secret = ENV["CONSUMER_SECRET"]
@@ -96,13 +97,13 @@ class RestaurantsController < ApplicationController
   
   def store_restaurants_data(rest_obj)
     my_places = []
-    my_place = Struct.new("Place", :biz_name, :rating, :address, :image_url) #Defining a new struct (class) to hold fields from Yelp JSON      
+    my_place = Struct.new("Place", :biz_name, :rating, :address, :image_url) #Defining a struct to hold fields from Yelp JSON      
     
     rest_obj["businesses"].each do |business|
       new_place = my_place.new
       new_place.biz_name = business["name"]
       new_place.rating = business["rating"]
-      new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}" #uggggly
+      new_place.address = "#{business["location"]["address"].join(" ")}, #{business["location"]["state_code"]} #{business["location"]["postal_code"]}" 
       new_place.image_url = business["image_url"]
 
       my_places << new_place

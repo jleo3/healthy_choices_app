@@ -31,14 +31,13 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-
     <% if @meal.errors.any? %>
-    <h2>There were errors saving your meal</h2>
-    <ul>
-      <% @meal.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
+        <h2>There were errors saving your meal</h2>
+	<ul>
+	  <% @meal.errors.full_messages.each do |msg| %>
+	     <li><%= msg %></li>
+	  <% end %>
+	</ul>
     <% end %>
 
     <%= form_for @meal do |f| %>
