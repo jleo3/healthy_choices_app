@@ -33,6 +33,7 @@
       <li class="active"><%= link_to "Home", root_path %></li>
       <li><%= link_to "My Restaurants", restaurants_path %></li>
       <li><%= link_to "My Meals", meals_path %></li>
+      
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
@@ -47,10 +48,10 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <div class="btn-group index-btn">
-      <%= link_to "Add new Restaurant", restaurants_search_path, :class => "btn-large btn-success" %>
+    <div class="container">
+      <%= link_to "<button class='btn-large btn-success'>Add new Restaurant</button>".html_safe, restaurants_search_path %>
     </div>
-    <h2 class="text-center">Find bookmarked restaurants near:</h2>
+    <h2>Find bookmarked restaurants near:</h2>
     <div class="row-fluid">
       <div class="span4 well">
 	<%= form_tag home_path, method: "get", :id => "form", :class => "form-search" do %>
