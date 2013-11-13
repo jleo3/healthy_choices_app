@@ -24,10 +24,9 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.find(:all, :conditions => { :user_id => current_user.id })
-    @json = @restaurants.to_gmaps4rails do |restaurant, marker|
-      marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant})
-      marker.title "#{restaurant.name}"
-      marker.json({ :address => restaurant.address})
+    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
     end
   end
 

@@ -3,12 +3,13 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'devise'
-gem 'gmaps4rails', "~> 1.5.6"
+gem 'gmaps4rails'
 gem 'oauth'
 gem 'rest-client'
 gem 'json'
 gem 'geocoder'
 gem 'pg'
+gem 'underscore-rails'
 
 gem 'dotenv-rails', :group => [:development, :test]
 

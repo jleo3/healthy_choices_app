@@ -16,13 +16,13 @@
       <li class="active"><%= link_to "Home", home_path %></li>
       <li><%= link_to "My Restaurants", restaurants_path %></li>
       <li><%= link_to "My Meals", meals_path %></li>
+      <li><%= link_to "About", about_index_path %></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
       <li><a>Signed in as <%= current_user.email %></a></li>
       <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-      
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
@@ -36,6 +36,7 @@ n<!-- Home page header -->
 	<%= link_to "Back to search", restaurants_search_path %>
     <% else %>
         <h1>Search Results</h1>
+	<%= link_to "Back to search", restaurants_search_path %>
         <% @restaurant_results.each do |restaurant| %>
            <ul class="thumbnails">
 	     <li class="span4">

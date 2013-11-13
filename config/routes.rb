@@ -1,4 +1,5 @@
 HealthyChoicesApp::Application.routes.draw do
+  get "about/index"
   get "restaurant/index"
   devise_for :users
 
@@ -7,6 +8,7 @@ HealthyChoicesApp::Application.routes.draw do
     
   resources :restaurants, :only => [:index, :new, :create, :show, :search, :home]
   resources :meals, :only => [:index, :new, :create, :edit, :show, :update]
+  resources :about, :only => [:index]
 
   root 'restaurants#home'
   
