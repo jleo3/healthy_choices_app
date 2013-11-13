@@ -11,6 +11,7 @@
 	background-color: #484848;
 	height: 40px;
 	width: 240px;
+	
 }
 
 .table-title h2{
