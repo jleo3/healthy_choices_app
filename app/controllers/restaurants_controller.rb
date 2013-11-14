@@ -13,8 +13,12 @@ class RestaurantsController < ApplicationController
         if is_in_range?(restaurant, @search_zip)
           @near_restaurants << restaurant
           @hash = Gmaps4rails.build_markers(@near_restaurants) do |restaurant, marker|
+            meal1 = restaurant.meals.first.name unless restaurant.meals.first.nil?
+            meal2 = restaurant.meals[1].name unless restaurant.meals[1].nil?
+            meal3 = restaurant.meals[2].name unless restaurant.meals[2].nil?
             marker.lat restaurant.latitude
             marker.lng restaurant.longitude
+            marker.infowindow "<b>#{restaurant.name}</b><br /> <em>#{restaurant.address}</em> <br /> #{meal1}<br /> #{meal2} <br /> #{meal3}"
           end
         end
       end
@@ -26,8 +30,7 @@ class RestaurantsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
-      marker.infowindow restaurant.address
-      marker.json({ title: restaurant.name })
+      marker.infowindow "<b>#{restaurant.name}</b> <br /> <em>#{restaurant.address}</em> <br /> Yelp rating: #{restaurant.yelp_rating}"
     end
   end
 
