@@ -24,7 +24,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">HealthyEats</a>
+    <a class="navbar-brand" href="#">HealthyChoices</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,9 +48,6 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <div class="container">
-      <%= link_to "<button class='btn-large btn-success'>Add new Restaurant</button>".html_safe, restaurants_search_path %>
-    </div>
     <h2>Find bookmarked restaurants near:</h2>
     <div class="row-fluid">
       <div class="span4 well">
@@ -63,31 +60,11 @@
     </div>
     <% unless @search_zip.nil? %>
         <% if @near_restaurants.empty? %>
-            <h2>No results found</h2>
+            <h2>No results found. <%= link_to "Add a new restaurant.", restaurants_search_path %></h2>
         <% else %>
 	    <div class="table-title home">
 	      <h2><%= "My restaurants near #{@search_zip}" %></h2>
 	    </div>
-            <table class="table table-hover">
-               <tr class="table-header">
-		 <td>#</td>
-		 <td>Restaurant</td>
-		 <td>Address</td>
-		 <td>Yelp Rating</td>
-		 <td></td>
-	       </tr>
-	       <% count = 0 %>
-               <% @near_restaurants.each do |restaurant| %>
-	          <% count += 1 %>
-                  <tr>
-		    <td><%= count %></td>
-		    <td><%= restaurant.name %></td>
-		    <td><%= restaurant.address %></td>
-		    <td><%= restaurant.yelp_rating %></td>
-		    <td><%= link_to "View", restaurant_path(restaurant) %>
-		  </tr>
-               <% end %>
-	    </table>
 	    <div style='width: 800px;'>
 	      <div id="map" style='width: 800px; height: 400px;'>
 	      </div>
