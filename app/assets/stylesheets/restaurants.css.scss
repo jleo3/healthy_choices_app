@@ -7,14 +7,31 @@
 	float: left;
 }
 
+.table {
+       margin-top: 15px;
+}
+
 .table-title {
 	background-color: #484848;
 	height: 40px;
 	width: 240px;
+	margin: 0 auto;
 }
 
-.table-title h2{
+.table-title.home {
+	width: 450px;
+}
+
+.table-title.show {
+	width: 200px;
+}
+
+.table-title h2 {
        font-weight: bold;
+       color: white;
+       line-height: 40px; 
+       text-align: center;
+       vertical-align: middle;
 }
 
 .table-header {

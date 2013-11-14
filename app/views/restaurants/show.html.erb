@@ -52,14 +52,17 @@
         </div>
       </div>
     </div> <!-- End of restaurant profile head -->
-    
-    <h2>Saved Meals</h2>
+
+    <% if !@restaurant.meals.empty? %>
+    <div class="table-title show">
+      <h2>Saved Meals</h2>
+    </div>
     <table class="table table-hover">
-      <tr>
-	<td><h3>#</h3></td>
-	<td><h3>Meal</h3></td>
-	<td><h3>Description</h3></td>
-	<td><h3>Estimated Calories</h3></td>
+      <tr class="table-header">
+	<td>#</td>
+	<td>Meal</td>
+	<td>Description</td>
+	<td>Estimated Calories</td>
 	<td></td>
       </tr>
       <% count = 0 %>
@@ -81,5 +84,8 @@
       <% end %>
     </table>
   </div>
+  <% else %>
+    <h2>Looks like you don't have any meals saved. <%= link_to "Add one now.", new_meal_path %></h2>
+  <% end %>
 </div>
 

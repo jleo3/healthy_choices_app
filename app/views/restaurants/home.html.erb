@@ -65,12 +65,15 @@
         <% if @near_restaurants.empty? %>
             <h2>No results found</h2>
         <% else %>
+	    <div class="table-title home">
+	      <h2><%= "My restaurants near #{@search_zip}" %></h2>
+	    </div>
             <table class="table table-hover">
-               <tr>
-		 <td><h3>#</h3></td>
-		 <td><h3>Restaurant</h3></td>
-		 <td><h3>Address</h3></td>
-		 <td><h3>Yelp Rating</h3></td>
+               <tr class="table-header">
+		 <td>#</td>
+		 <td>Restaurant</td>
+		 <td>Address</td>
+		 <td>Yelp Rating</td>
 		 <td></td>
 	       </tr>
 	       <% count = 0 %>
@@ -81,6 +84,7 @@
 		    <td><%= restaurant.name %></td>
 		    <td><%= restaurant.address %></td>
 		    <td><%= restaurant.yelp_rating %></td>
+		    <td><%= link_to "View", restaurant_path(restaurant) %>
 		  </tr>
                <% end %>
 	    </table>

@@ -45,12 +45,16 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
-    <%= form_tag("/restaurants/new", method: "get", :id => "form") do %>
-      <%= label_tag(:name, "Restaurant name:") %>
-      <%= text_field_tag(:name) %>
+    <div class="row-fluid">
+      <div class="span6 well">
+    <%= form_tag("/restaurants/new", method: "get", :id => "form", :class=> "form-search") do %>
+      <%= label_tag "Restaurant name:", nil, :class => "control-label" %>
+      <%= text_field_tag(:name, nil, :class => "input-large search-query") %><br />
       <%= label_tag(:city, "City:") %>
       <%= text_field_tag(:city) %>
-      <%= submit_tag("Search", :id => "submit") %>
+      <%= submit_tag("Search", :id => "submit", :class => "btn-large btn-primary") %>
     <% end %>
+
+    </div>
   </div>
 </div>

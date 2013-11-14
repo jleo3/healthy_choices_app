@@ -32,13 +32,16 @@
 <!-- Home page header -->
 <div class="jumbotron">
   <div class="container">
+    <div class="table-title idx">
+      <h2><%= "My meals" %></h2>
+    </div>
     <table class="table table-hover">
-      <tr>
-	<td><h3>#</h3></td>
-	<td><h3>Meal</h3></td>
-	<td><h3>Restaurant</h3></td>
-	<td><h3>Description</h3></td>
-	<td><h3>Estimated Calories</h3></td>
+      <tr class="table-header">
+	<td>#</td>
+	<td>Meal</td>
+	<td>Restaurant</td>
+	<td>Description</td>
+	<td>Estimated Calories</td>
 	<td></td>
 	<% count = 0 %>
 	<% @meals.each do |meal| %>
