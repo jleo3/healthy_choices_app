@@ -1,0 +1,5 @@
+- You did a great job with this applicaiton! You accomplished what you set out to do, didn't cut scope, and had a great presentation.
+
+- Your next focus should be on refactoring your views. Use partials to DRY up your code. Generally speaking, you shouldn't have <head> or <script> tags in your CRUD view files (new.html.erb, index.html.erb, etc...). Move anything in <head> to application.html.erb or yield to a resource-specific file that governs the rest (application.html.erb yields to restaurants.html.erb, which sets <head> elements specific to its new, index, new, and show files. <script> tags mean javascript, and javascript should be onubtrusive (http://railscasts.com/episodes/205-unobtrusive-javascript, http://guides.rubyonrails.org/working_with_javascript_in_rails.html).
+
+- I mentioned this somewhere in the notes, but it bears repeating. Your controllers are handling all of the heavy lifting right now. You want to offload some of that to your models, which currently don't do very much. Helper methods on your models will help you keep your controller code maintainable.

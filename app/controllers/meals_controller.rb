@@ -1,5 +1,6 @@
 class MealsController < ApplicationController
 
+  # Beautifully done! Easy to read, easy to change. 
   def index
     @meals = Meal.find(:all, :conditions => { :user_id => current_user.id })
 
